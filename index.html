@@ -3,209 +3,173 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Da Casino — Coming Soon</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-
+  <title>Da Casino</title>
+  <meta name="description" content="Da Casino — welcome page. Find our Discord, TikTok, and latest updates." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --accent: #d6a100;
-      --accent-2: #c62828;
-      --bg-overlay: rgba(6,6,10,0.45);
-      --glass: rgba(255,255,255,0.06);
+      --bg:#061129; --card:#0c1b2b; --accent:#f7b300; --muted:#9fb2c8;
+      --glass: rgba(255,255,255,0.03);
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(247,179,0,0.06), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(18,142,224,0.04), transparent),
+                  var(--bg);
+      color:#e6f0f8;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#ff6b6b);box-shadow:0 6px 24px rgba(0,0,0,0.5)}
+    .logo svg{width:36px;height:36px}
+    h1{font-size:22px;margin:0}
+    p.lead{margin:0;color:var(--muted)}
 
-    /* Background (replace casino.jpg with your own image file) */
-    .bg {
-      position:fixed;inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.45)),
-        url('casino.jpg') center/cover no-repeat;
-      filter: saturate(1.05);
-      z-index:-2;
-    }
-    /* soft blur layer to mimic 'Roblox Da Hood' blurred background vibe */
-    .bg::after{
-      content:"";position:absolute;inset:0;
-      backdrop-filter: blur(6px) contrast(0.9);
-      z-index:-1;
-    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:20px}
 
-    /* center card */
-    .wrap{
-      min-height:100vh;
-      display:flex;align-items:center;justify-content:center;padding:40px;
-    }
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;margin-bottom:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:24px;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .main-title{font-size:36px;margin:0 0 12px 0;line-height:1.02}
+    .subtitle{color:var(--muted);margin-bottom:18px}
+    .cta-row{display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff6b6b);color:#061129}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 
-    .card{
-      width:100%;max-width:980px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:16px;
-      padding:28px;
-      display:flex;
-      gap:28px;
-      align-items:center;
-      box-shadow: 0 10px 30px rgba(2,4,10,0.6);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
+    .socials{display:flex;flex-direction:column;gap:12px}
+    .social-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    .social-item svg{width:28px;height:28px}
+    .social-item a{color:#eaf6ff;text-decoration:none;font-weight:600}
+    .social-item small{display:block;color:var(--muted);font-weight:400}
 
-    .left{
-      flex:1;
-      color:#fff;
-      padding:8px 12px;
-    }
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .feature{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.02)}
+    .feature h4{margin:0 0 6px 0}
+    .feature p{margin:0;color:var(--muted);font-size:13px}
 
-    .brand{
-      display:flex;align-items:center;gap:14px;margin-bottom:10px;
-    }
+    footer{margin-top:28px;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
 
-    .logo{
-      width:84px;height:84px;border-radius:12px;
-      background: linear-gradient(180deg,var(--accent), #ffcf57);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-size:20px;color:#071018;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-      text-transform:uppercase;
-      letter-spacing: -1px;
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
     }
-
-    .title{
-      font-size:34px;font-weight:800;margin:0;
-      text-transform:uppercase;
-      letter-spacing:2px;
-    }
-    .subtitle{
-      margin:6px 0 14px;color:#e6e6e6;opacity:0.9;
-    }
-
-    .desc{
-      color:#dfe7ee;opacity:0.95;margin-bottom:16px;
-      line-height:1.35;
-    }
-
-    .actions{
-      display:flex;gap:12px;flex-wrap:wrap;
-    }
-
-    .btn{
-      background:transparent;border:1px solid rgba(255,255,255,0.12);
-      padding:10px 16px;border-radius:10px;color:#fff;font-weight:600;
-      text-decoration:none;cursor:pointer;
-      transition:all .18s ease;
-    }
-    .btn.primary{
-      background:linear-gradient(90deg,var(--accent), #ffbb00);
-      border:none;color:#071018;
-      box-shadow: 0 6px 18px rgba(214,161,0,0.14);
-    }
-    .btn:hover{transform:translateY(-3px);}
-
-    /* signup */
-    .signup{
-      display:flex;gap:8px;margin-top:12px;max-width:420px;
-    }
-    .signup input{
-      flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);
-      background:transparent;color:#fff;outline:none;
-    }
-    .signup button{
-      padding:10px 14px;border-radius:10px;border:none;background:var(--accent);
-      color:#071018;font-weight:700;cursor:pointer;
-    }
-
-    /* right image or extra */
-    .right{
-      width:320px;min-width:260px;max-width:360px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.04);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:12px;color:#fff;
-    }
-    .chip{
-      display:flex;gap:10px;align-items:center;
-      background:var(--glass);padding:10px 12px;border-radius:10px;width:100%;
-    }
-    .chip .dot{width:10px;height:10px;background:var(--accent);border-radius:50%}
-
-    .small{font-size:13px;opacity:0.9}
-    .legal{font-size:12px;color:#cfd8de;opacity:0.75;text-align:center;margin-top:10px}
-
-    @media (max-width:880px){
-      .card{flex-direction:column;align-items:stretch}
-      .right{width:100%}
-      .logo{width:64px;height:64px;font-size:18px}
-      .title{font-size:26px}
+    @media (max-width:560px){
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      .features{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <!-- Comet casino icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12c2.5-4.5 7-8 13-8 0 0-2 3 0 6 2 3 0 6 0 6-6 0-10.5-3.5-13-8z" fill="white" opacity="0.12"/><path d="M13 3c.6 2.5 4 3 6 4-3 1-3 4-2 6-5 0-8-4-10-9 2 .5 3-1 6-1z" fill="white"/></svg>
+        </div>
+        <div>
+          <h1>Da Casino</h1>
+          <p class="lead">Cosmic-themed hangout — Discord, TikTok, news and more.</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#socials">Socials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-  <div class="wrap">
-    <div class="card" role="main" aria-labelledby="coming">
-      <div class="left">
-        <div class="brand">
-          <div class="logo">Da<br>Casino</div>
+    <section class="hero">
+      <main class="card">
+        <h2 class="main-title">Welcome to <span style="color:var(--accent)">Da Casino</span></h2>
+        <p class="subtitle">A small hub for my community — join the Discord, follow on TikTok, and check out updates.</p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="openLink('https://discord.gg/NFKqP7cCrg')">Join Discord</button>
+          <button class="btn btn-ghost" onclick="openLink('https://www.tiktok.com/@dacasino.top')">Follow on TikTok</button>
+        </div>
+
+        <div class="features" aria-hidden="false">
+          <div class="feature"><h4>Announcements</h4><p>Latest drops, server news, and events for the community.</p></div>
+          <div class="feature"><h4>Events</h4><p>Monthly tournaments and giveaways (hosted safely).</p></div>
+          <div class="feature"><h4>Support</h4><p>Need help? Contact staff on Discord or use the contact form below.</p></div>
+        </div>
+
+        <section id="about" style="margin-top:18px">
+          <h3 style="margin:0 0 8px 0">About Da Casino</h3>
+          <p style="margin:0;color:var(--muted)">Da Casino is a fan community space. This landing page connects you to my social profiles and community server. Use the buttons above to join — replace the placeholders with your actual invite/profile links in the HTML.</p>
+        </section>
+      </main>
+
+      <aside class="card socials" id="socials">
+        <div class="social-item">
+          <!-- Discord -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.4 7.6c0 0 1.2-1 2.6-1s2.6 1 2.6 1c0 0 1.3 0 1.6 0.9 0.3 0.8-0.1 2.3-0.1 2.3s-1.1 0.6-2.2 0.6-2.2-0.6-2.2-0.6-0.4-1.4-0.1-2.3c0.3-0.9 1.6-0.9 1.6-0.9z" fill="white" opacity="0.9"/></svg>
           <div>
-            <h1 id="coming" class="title">Da Casino</h1>
-            <div class="subtitle">Spending ingame money — Coming soon</div>
+            <a href="https://discord.gg/NFKqP7cCrg" id="discordLink" target="_blank" rel="noopener">Discord Server</a>
+            <small>Active staff, events, and chat • invite: discord.gg/NFKqP7cCrg</small>
           </div>
         </div>
 
-        <p class="desc">We’re building something lit: a casino experience for your Roblox-style server where you can spend ingame currency on slots, tables, and exclusive cosmetics. Drop your email to get notified when we launch.</p>
-
-        <div class="actions" aria-hidden="false">
-          <button class="btn primary" onclick="notify()">Notify Me</button>
-          <a class="btn" href="#" onclick="exploreSample();return false;">Preview Mockup</a>
+        <div class="social-item">
+          <!-- TikTok -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 3v6.2c-1.4 0-2.6-0.4-3.6-1.1v7.1c0 2.5-2 4.5-4.5 4.5-2.5 0-4.5-2-4.5-4.5S6.5 10.2 9 10.2c0.5 0 1 0.1 1.5 0.3V7.3c-0.8-0.3-1.6-0.5-2.5-0.5A7.2 7.2 0 0 0 9 3c0.2 0 0.5 0 0.8 0.1C11 3.4 13 3.8 17 3z" fill="white" opacity="0.95"/></svg>
+          <div>
+            <a href="https://www.tiktok.com/@dacasino.top" id="tiktokLink" target="_blank" rel="noopener">TikTok Profile</a>
+            <small>Shorts, highlights, and behind-the-scenes.</small>
+          </div>
         </div>
 
-        <form class="signup" id="signup" onsubmit="handleSignup(event)" aria-label="Email signup">
-          <input type="email" id="email" placeholder="your@email.com" aria-label="email address" required>
-          <button type="submit">Join</button>
-        </form>
+        <div class="social-item">
+          <!-- Email / Contact -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6v12h20V6L12 13 2 6z" fill="white" opacity="0.9"/></svg>
+          <div>
+            <a href="mailto:you@domain.com" id="emailLink">you@domain.com</a>
+            <small id="contactSmall">For business & partnerships.</small>
+          </div>
+        </div>
 
-        <div id="message" style="margin-top:12px;color:#dff0d8;display:none;font-weight:600"></div>
-      </div>
-
-      <aside class="right" aria-hidden="false">
-        <div style="font-weight:800;font-size:22px">Quick info</div>
-
-        <div class="chip"><div class="dot"></div><div class="small">Slots, Roulette & VIP tables</div></div>
-        <div class="chip"><div class="dot" style="background:#5ad8a7"></div><div class="small">Play with in-game cash only</div></div>
-        <div class="chip"><div class="dot" style="background:#9ad0ff"></div><div class="small">No real-money gambling</div></div>
-
-        <div class="legal">By joining you accept our community rules. This is for in-game currency only — no real gambling.</div>
+        <div style="margin-top:8px;font-size:13px;color:var(--muted)">Tip: Edit the links in the HTML to your actual profiles.</div>
       </aside>
-    </div>
+    </section>
+
+    <section id="contact" class="card" style="margin-bottom:12px">
+      <h3 style="margin:0 0 8px 0">Contact</h3>
+      <p style="margin:0 0 12px 0;color:var(--muted)">Send a message or reach out on Discord. Use the form below to email directly (this uses mailto; for a real form you’ll need a server).</p>
+      <form onsubmit="event.preventDefault(); sendMail();" style="display:flex;gap:8px;flex-direction:column">
+        <input id="name" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+        <input id="email" placeholder="Your email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+        <textarea id="message" placeholder="Message" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" type="submit">Send</button>
+          <button class="btn btn-ghost" type="button" onclick="copyInvite()">Copy Discord Invite</button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Da Casino — made by <strong>@Cosmic0780_</strong></div>
+      <div style="color:var(--muted);font-size:13px">Built with ❤️ — save this file as <code>index.html</code> and upload to your host.</div>
+    </footer>
   </div>
 
   <script>
-    function notify(){
-      const btn = document.querySelector('.btn.primary');
-      btn.innerText = 'Notified ✓';
-      setTimeout(()=>btn.innerText='Notify Me',2200);
-    }
-
-    function exploreSample(){
-      alert('Preview: This would show a mockup of the casino screen. Replace with your own preview link or image.');
-    }
-
-    function handleSignup(e){
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      if(!email){ return; }
-      // This just simulates success (no backend). Replace with fetch() to your API.
-      const msg = document.getElementById('message');
-      msg.style.display='block';
-      msg.innerText = `Thanks! We'll notify ${email}`;
-      e.target.reset();
-
-      // neat little animation hide after 4s
-      setTimeout(()=>{ msg.style.display='none'; },4000);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function openLink(url){ window.open(url,'_blank'); }
+    function copyInvite(){ navigator.clipboard.writeText('https://discord.gg/REPLACE').then(()=>alert('Invite copied to clipboard')) }
+    function sendMail(){
+      const n=document.getElementById('name').value||'Anon';
+      const e=document.getElementById('email').value||'no-reply';
+      const m=document.getElementById('message').value||'';
+      const subject = encodeURIComponent('Contact from ' + n);
+      const body = encodeURIComponent('From: '+n+' ('+e+')\n\n'+m);
+      window.location.href = 'mailto:you@domain.com?subject='+subject+'&body='+body;
     }
   </script>
 </body>
